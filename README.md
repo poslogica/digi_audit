@@ -87,6 +87,10 @@ This software is provided for educational and authorized security testing purpos
 - Registry modifications require administrator privileges
 - Test in non-production environment before deploying to production systems
 
+## Credits
+
+- Inspired by: [YouTube Tutorial](https://www.youtube.com/watch?v=x8GA1GnEl3o)
+
 ## Author
 
 poslogica
