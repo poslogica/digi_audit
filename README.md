@@ -13,7 +13,9 @@ A collection of Windows diagnostic and auditing scripts for system analysis and 
 
 ### Clipboard Hound
 
-This PowerShell script searches for clipboard-related files in the user's local app data packages directory and identifies screen clipping configurations.
+Comprehensive forensic analysis and security hardening tool for Windows clipboard and screen capture functionality. Searches for clipboard-related artifacts, identifies sensitive data exposure risks, and applies security controls.
+
+**Version:** 1.0
 
 **Usage:**
 
@@ -23,21 +25,32 @@ This PowerShell script searches for clipboard-related files in the user's local 
 
 **What it does:**
 
-- Searches `%LOCALAPPDATA%\Packages` for clipboard and screen clip related files
-- Identifies `.dat` files and files containing "ScreenClip" references
-- Reports files containing "clipboard" or "ScreenClip" keywords
-- Handles file read errors gracefully with error messages
+- Scans `%LOCALAPPDATA%\Packages` for clipboard-related files (`*.dat`, `*ScreenClip`)
+- Identifies and reports files containing "clipboard" or "ScreenClip" keywords
+- Counts and displays total clipboard-related files found
+- **Disables clipboard history** via registry (`HKCU\Software\Microsoft\Clipboard` → `EnableClipboardHistory = 0`)
+- **Blocks screen clipping** via registry (`HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ScreenClipBlock` → `BlockScreenClip = 1`)
+- Handles file read errors gracefully with detailed error messages
+- Provides comprehensive execution summary with status confirmation
 
-**Registry Keys:**
+**Registry Keys Modified:**
 
-- `HKCU\Software\Microsoft\Clipboard` - Clipboard history settings
-- `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ScreenClipBlock` - Screen clipping control
+- `HKCU\Software\Microsoft\Clipboard\EnableClipboardHistory` - Disables clipboard history (set to 0)
+- `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ScreenClipBlock\BlockScreenClip` - Blocks screen clipping (set to 1)
+
+**Output:**
+
+- Console output with detailed findings for each clipboard-related file found
+- Count of total clipboard-related files discovered
+- Registry modification status and confirmation messages
+- Specific error messages for troubleshooting file read failures
+- Execution summary with clear formatting
 
 ## Requirements
 
-- Windows 10/11
+- Windows 10/11 (tested on 20H2 and later)
 - PowerShell 5.0 or higher
-- Administrator privileges (for some operations)
+- **Administrator privileges required** (for registry modifications and accessing protected files)
 
 ## License
 
@@ -66,6 +79,13 @@ SOFTWARE.
 ## Disclaimer
 
 This software is provided for educational and authorized security testing purposes only. Users are responsible for ensuring they have proper authorization before running these scripts on any system. Unauthorized access to computer systems is illegal. The authors are not responsible for any misuse or damage caused by this software.
+
+## Known Considerations
+
+- System files (like `User.dat`) may be locked by Windows processes and cannot be read while in use
+- Run in Safe Mode if you need to read all system files without locks
+- Registry modifications require administrator privileges
+- Test in non-production environment before deploying to production systems
 
 ## Author
 
