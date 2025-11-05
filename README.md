@@ -87,6 +87,30 @@ This software is provided for educational and authorized security testing purpos
 - Registry modifications require administrator privileges
 - Test in non-production environment before deploying to production systems
 
+## Information Disclosure
+
+**Output Information:**
+
+- The script outputs file paths and locations of clipboard-related files
+- Error messages may include system paths and error details
+- This information can be useful for forensic analysis but should be handled carefully
+
+**Best Practices:**
+
+- Redirect output to log files with appropriate access controls
+- Be cautious when sharing console output or logs containing file paths
+- Ensure PowerShell transcript logs are stored securely
+- Consider sanitizing output paths before sharing in non-secure environments
+- Do not output sensitive data such as passwords, API keys, or authentication tokens
+- Clear PowerShell command history if running the script with sensitive context
+
+**Production Deployment:**
+
+- Review all error messages before deploying to production
+- Consider implementing structured logging instead of console output
+- Implement access controls on log files containing script output
+- Monitor and audit script execution in production environments
+
 ## Credits
 
 - Inspired by: [SysHackkk](https://www.youtube.com/@SysHackkk) - [YouTube Tutorial](https://www.youtube.com/watch?v=x8GA1GnEl3o)
