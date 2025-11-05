@@ -89,7 +89,7 @@ This software is provided for educational and authorized security testing purpos
 
 ## Credits
 
-- Inspired by: [YouTube Tutorial](https://www.youtube.com/watch?v=x8GA1GnEl3o)
+- Inspired by: [SysHackkk](https://www.youtube.com/@SysHackkk) - [YouTube Tutorial](https://www.youtube.com/watch?v=x8GA1GnEl3o)
 
 ## Author
 
